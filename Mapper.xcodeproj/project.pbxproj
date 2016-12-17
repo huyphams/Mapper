@@ -1,0 +1,325 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		E5AD44921E05CD9200833E4A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5AD44911E05CD9200833E4A /* AppDelegate.swift */; };
+		E5AD44991E05CD9200833E4A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E5AD44981E05CD9200833E4A /* Assets.xcassets */; };
+		E5AD44A81E05CDB600833E4A /* Model.m in Sources */ = {isa = PBXBuildFile; fileRef = E5AD44A71E05CDB600833E4A /* Model.m */; };
+		E5AD44AE1E05CDEB00833E4A /* Mapper.m in Sources */ = {isa = PBXBuildFile; fileRef = E5AD44AB1E05CDEB00833E4A /* Mapper.m */; };
+		E5AD44AF1E05CDEB00833E4A /* MapperUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = E5AD44AD1E05CDEB00833E4A /* MapperUtils.m */; };
+		E5AD44B11E05CF4400833E4A /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E5AD44B01E05CF4400833E4A /* Default-568h@2x.png */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		E5AD448E1E05CD9200833E4A /* Mapper.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Mapper.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		E5AD44911E05CD9200833E4A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		E5AD44981E05CD9200833E4A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		E5AD449D1E05CD9200833E4A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E5AD44A51E05CDB600833E4A /* Mapper-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Mapper-Bridging-Header.h"; sourceTree = "<group>"; };
+		E5AD44A61E05CDB600833E4A /* Model.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Model.h; sourceTree = "<group>"; };
+		E5AD44A71E05CDB600833E4A /* Model.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Model.m; sourceTree = "<group>"; };
+		E5AD44AA1E05CDEB00833E4A /* Mapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Mapper.h; sourceTree = "<group>"; };
+		E5AD44AB1E05CDEB00833E4A /* Mapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Mapper.m; sourceTree = "<group>"; };
+		E5AD44AC1E05CDEB00833E4A /* MapperUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapperUtils.h; sourceTree = "<group>"; };
+		E5AD44AD1E05CDEB00833E4A /* MapperUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapperUtils.m; sourceTree = "<group>"; };
+		E5AD44B01E05CF4400833E4A /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default-568h@2x.png"; path = "../Default-568h@2x.png"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		E5AD448B1E05CD9200833E4A /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		E5AD44851E05CD9200833E4A = {
+			isa = PBXGroup;
+			children = (
+				E5AD44901E05CD9200833E4A /* Mapper */,
+				E5AD448F1E05CD9200833E4A /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		E5AD448F1E05CD9200833E4A /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				E5AD448E1E05CD9200833E4A /* Mapper.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		E5AD44901E05CD9200833E4A /* Mapper */ = {
+			isa = PBXGroup;
+			children = (
+				E5AD44A91E05CDEB00833E4A /* Classes */,
+				E5AD44A41E05CD9E00833E4A /* Model */,
+				E5AD44911E05CD9200833E4A /* AppDelegate.swift */,
+				E5AD44B01E05CF4400833E4A /* Default-568h@2x.png */,
+				E5AD44981E05CD9200833E4A /* Assets.xcassets */,
+				E5AD449D1E05CD9200833E4A /* Info.plist */,
+			);
+			path = Mapper;
+			sourceTree = "<group>";
+		};
+		E5AD44A41E05CD9E00833E4A /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				E5AD44A61E05CDB600833E4A /* Model.h */,
+				E5AD44A71E05CDB600833E4A /* Model.m */,
+				E5AD44A51E05CDB600833E4A /* Mapper-Bridging-Header.h */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		E5AD44A91E05CDEB00833E4A /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				E5AD44AA1E05CDEB00833E4A /* Mapper.h */,
+				E5AD44AB1E05CDEB00833E4A /* Mapper.m */,
+				E5AD44AC1E05CDEB00833E4A /* MapperUtils.h */,
+				E5AD44AD1E05CDEB00833E4A /* MapperUtils.m */,
+			);
+			path = Classes;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		E5AD448D1E05CD9200833E4A /* Mapper */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E5AD44A01E05CD9200833E4A /* Build configuration list for PBXNativeTarget "Mapper" */;
+			buildPhases = (
+				E5AD448A1E05CD9200833E4A /* Sources */,
+				E5AD448B1E05CD9200833E4A /* Frameworks */,
+				E5AD448C1E05CD9200833E4A /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Mapper;
+			productName = Mapper;
+			productReference = E5AD448E1E05CD9200833E4A /* Mapper.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		E5AD44861E05CD9200833E4A /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0820;
+				LastUpgradeCheck = 0820;
+				ORGANIZATIONNAME = "Huy Pham";
+				TargetAttributes = {
+					E5AD448D1E05CD9200833E4A = {
+						CreatedOnToolsVersion = 8.2;
+						DevelopmentTeam = 3X57WP8E8V;
+						LastSwiftMigration = 0820;
+						ProvisioningStyle = Automatic;
+					};
+				};
+			};
+			buildConfigurationList = E5AD44891E05CD9200833E4A /* Build configuration list for PBXProject "Mapper" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = E5AD44851E05CD9200833E4A;
+			productRefGroup = E5AD448F1E05CD9200833E4A /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				E5AD448D1E05CD9200833E4A /* Mapper */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		E5AD448C1E05CD9200833E4A /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E5AD44991E05CD9200833E4A /* Assets.xcassets in Resources */,
+				E5AD44B11E05CF4400833E4A /* Default-568h@2x.png in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		E5AD448A1E05CD9200833E4A /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E5AD44AF1E05CDEB00833E4A /* MapperUtils.m in Sources */,
+				E5AD44AE1E05CDEB00833E4A /* Mapper.m in Sources */,
+				E5AD44A81E05CDB600833E4A /* Model.m in Sources */,
+				E5AD44921E05CD9200833E4A /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		E5AD449E1E05CD9200833E4A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		E5AD449F1E05CD9200833E4A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		E5AD44A11E05CD9200833E4A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
+				DEVELOPMENT_TEAM = 3X57WP8E8V;
+				INFOPLIST_FILE = Mapper/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = katana.Mapper;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Mapper/Mapper-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Debug;
+		};
+		E5AD44A21E05CD9200833E4A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
+				DEVELOPMENT_TEAM = 3X57WP8E8V;
+				INFOPLIST_FILE = Mapper/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = katana.Mapper;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Mapper/Mapper-Bridging-Header.h";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		E5AD44891E05CD9200833E4A /* Build configuration list for PBXProject "Mapper" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E5AD449E1E05CD9200833E4A /* Debug */,
+				E5AD449F1E05CD9200833E4A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		E5AD44A01E05CD9200833E4A /* Build configuration list for PBXNativeTarget "Mapper" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E5AD44A11E05CD9200833E4A /* Debug */,
+				E5AD44A21E05CD9200833E4A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = E5AD44861E05CD9200833E4A /* Project object */;
+}
