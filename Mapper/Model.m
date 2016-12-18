@@ -11,11 +11,11 @@
 @implementation Model
 
 - (NSString *)getSourceUrl {
-    return @"https://staging.feels.com/feels-core/public/castings/1";
+    return @"";
 }
 
 - (NSString *)getSourceKeyPath {
-    return @"Data";
+    return @"Data/User";
 }
 
 @end

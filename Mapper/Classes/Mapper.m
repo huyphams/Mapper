@@ -166,13 +166,13 @@ static const char *getPropertyType(objc_property_t property) {
     objc_property_t *properties = class_copyPropertyList([self class], &outCount);
     for(int i = 0; i < outCount; i++) {
         objc_property_t property = properties[i];
-        const char *propName = property_getName(property);
-        if (propName) {
+        const char *propertyNameChar = property_getName(property);
+        if (propertyNameChar) {
             @autoreleasepool {
-                const char *propType = getPropertyType(property);
-                NSString *propertyName = [NSString stringWithCString:propName
+                const char *propertyTypeChar = getPropertyType(property);
+                NSString *propertyName = [NSString stringWithCString:propertyNameChar
                                                             encoding:NSUTF8StringEncoding];
-                NSString *propertyType = [NSString stringWithCString:propType
+                NSString *propertyType = [NSString stringWithCString:propertyTypeChar
                                                             encoding:NSUTF8StringEncoding];
                 NSString *propertyNameStrippedUnderscore = [self getPropertyNameStrippedUnderscore:propertyName];
                 [_attributes setValue:propertyType forKey:propertyNameStrippedUnderscore];

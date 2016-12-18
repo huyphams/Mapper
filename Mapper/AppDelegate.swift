@@ -15,11 +15,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         
-        let model = Model()
+        let model = Model(dictionary: ["Name": "Carrot", "ID": "A2jsdk"])
         
-        model.fetch { (_, _) in
-            print(model.toDictionary())
-        }
+        print(model.toDictionary())
         
         return true
     }

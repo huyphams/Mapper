@@ -10,6 +10,7 @@
 
 @interface Model : Mapper
 
+@property (nonatomic, copy) NSString *ID;
 @property (nonatomic, copy) NSString *Name;
 
 @end
