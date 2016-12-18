@@ -1,7 +1,7 @@
 This is Mapper for Objective class (can integrate with Swift probject as example). It's very simple and easy to use.
 
 ```
-    // Create model inheritant to Mapper class
+    // Create model inheritance Mapper class
     let model = Model()
    
    // Init it with json
