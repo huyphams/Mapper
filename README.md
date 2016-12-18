@@ -1,4 +1,4 @@
-This is Mapper for Objective class (can integrate with Swift probject as example). It's very simple and easy to use.
+This is Mapper for class (can integrate with Swift probject as example) to Unmarshal JSON to Class without manual mapping. It's very simple and easy to use.
 
 ```
     // Create model inheritance Mapper class
