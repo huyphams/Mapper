@@ -20,8 +20,8 @@ Or you can set selector trigger whatever field change value.
 
 #### Limitations
 
-- Can not init property of supper class.
-- Can not setup selector with params
+- Can't init property of super class.
+- Can't setup selector with params.
 
 #### Prop
 
@@ -33,7 +33,8 @@ Or you can set selector trigger whatever field change value.
 
 #### Cons
 
-- Still Objective-C
+- Still Objective-C.
+- Still have some limitations.
 
 #### Improvement
 
