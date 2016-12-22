@@ -27,8 +27,8 @@ Or you can set selector trigger whatever field change value.
 
 - Easy to use and define
 - Reduce bugs by typo and boring manual mapping code.
-- Deduce bugs by null, nil and optional wrapping.
-- Have many utils.
+- Reduce bugs by null, nil, NSNull and optional wrapping when handle Json from server.
+- Included networking and many utils.
 - Work fine with Objective-C and Swift.
 
 #### Cons
