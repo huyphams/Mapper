@@ -6,7 +6,6 @@
 //  Copyright (c) 2015 Katana. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
 #import "Decoder.h"
 
 NS_ASSUME_NONNULL_BEGIN

@@ -48,9 +48,7 @@ static const char *getPropertyType(objc_property_t property) {
 
 @end
 
-@interface Decoder() {
-    NSMutableDictionary *_attributes;
-}
+@interface Decoder()
 
 @property (nonatomic, getter=isInitiated) BOOL initiated;
 
@@ -115,11 +113,11 @@ static NSArray<Attribute *> *_attributes = nil;
 }
 
 - (instancetype)initWithDictionary:(NSDictionary *)dictionary {
+    _initiated = NO;
     self = [super init];
     if (!self) {
         return nil;
     }
-    [self commonInit];
     if (!dictionary || ![dictionary isKindOfClass:[NSDictionary class]]) {
         SEL selector = NSSelectorFromString([NSString stringWithFormat:@"_%@:",
                                              NSStringFromClass(self.class)]);
@@ -132,12 +130,8 @@ static NSArray<Attribute *> *_attributes = nil;
         return self;
     }
     [self initData:dictionary];
+    _initiated = YES;
     return self;
-}
-
-- (void)commonInit {
-    _initiated = NO;
-    _attributes = [[NSMutableDictionary alloc] init];
 }
 
 - (NSArray<Attribute *> *)attributes {
@@ -146,7 +140,7 @@ static NSArray<Attribute *> *_attributes = nil;
     }
     NSMutableArray<Attribute *> *attributes = [NSMutableArray array];
     Class class = [self class];
-    while ([class isSubclassOfClass:[Decoder class]]) {
+    while ([class superclass] != [Decoder class] && [class isSubclassOfClass:[Decoder class]]) {
         NSArray *attrs = [Decoder getAttributeForClass:class];
         [attributes addObjectsFromArray:attrs];
         class = [class superclass];
@@ -214,75 +208,44 @@ static NSArray<Attribute *> *_attributes = nil;
 
 - (NSDictionary *)toDictionary {
     NSMutableDictionary *mutableDictionary = [NSMutableDictionary dictionary];
-    unsigned int outCount;
-    objc_property_t *properties = class_copyPropertyList([self class], &outCount);
-    for(int i = 0; i < outCount; i++) {
-        objc_property_t property = properties[i];
-        const char *propName = property_getName(property);
-        NSString *propertyName = [NSString stringWithCString:propName encoding:NSUTF8StringEncoding];
-        id value = [self valueForKey:propertyName];
-        if (value) {
-            NSString *propertyNameStrippedUnderscore = [Decoder getPropertyNameStrippedUnderscore:propertyName];
-            if ([[value class] isSubclassOfClass:[Decoder class]]) {
-                [mutableDictionary setObject:[value toDictionary]
-                                      forKey:propertyNameStrippedUnderscore];
-            } else if ([value isKindOfClass:[NSArray class]]) {
-                [mutableDictionary setObject:[self arraySerializer:value]
-                                      forKey:propertyNameStrippedUnderscore];
-            } else if ([value isKindOfClass:[NSDictionary class]]) {
-                [mutableDictionary setObject:[self dictionarySerializer:value]
-                                      forKey:propertyNameStrippedUnderscore];
-            } else {
-                [mutableDictionary setValue:[self valueSerializer:value
-                                                              key:propertyNameStrippedUnderscore]
-                                     forKey:propertyNameStrippedUnderscore];
-            }
-        }
-    }
-    free(properties);
-    return mutableDictionary;
-}
-
-- (NSDictionary *)dictionarySerializer:(NSDictionary *)dictionary {
-    NSMutableDictionary *mutableDictionary = [NSMutableDictionary dictionary];
-    for (NSString *key in [dictionary allKeys]) {
-        id value = [dictionary valueForKey:key];
+    for (Attribute *attribute in [self attributes]) {
+        id value = [self valueForKey:attribute.name];
         if ([[value class] isSubclassOfClass:[Decoder class]]) {
             [mutableDictionary setObject:[value toDictionary]
-                                  forKey:key];
-        } else if ([value isKindOfClass:[NSArray class]]){
-            [mutableDictionary setObject:[self arraySerializer:value]
-                                  forKey:key];
-        } else if ([value isKindOfClass:[NSDictionary class]]) {
-            [mutableDictionary setObject:[self dictionarySerializer:value]
-                                  forKey:key];
-        } else {
-            [mutableDictionary setObject:[self valueSerializer:value
-                                                           key:key]
-                                  forKey:key];
+                                  forKey:attribute.name];
+            continue;
         }
+        if ([value isKindOfClass:[NSArray class]]){
+            [mutableDictionary setObject:[self toArray:value]
+                                  forKey:attribute.name];
+            continue;
+        }
+        [mutableDictionary setObject:[self toValue:value
+                                               key:attribute.name
+                                              type: attribute.type]
+                              forKey:attribute.name];
+        
     }
     return mutableDictionary;
 }
 
-- (NSArray *)arraySerializer:(NSArray *)array {
+- (NSArray *)toArray:(NSArray *)array {
     NSMutableArray *mutableArray = [NSMutableArray array];
     for (id value in array) {
         if ([[value class] isSubclassOfClass:[Decoder class]]) {
             [mutableArray addObject:[value toDictionary]];
-        } else if ([value isKindOfClass:[NSArray class]]){
-            [mutableArray addObject:[self arraySerializer:value]];
-        } else if ([value isKindOfClass:[NSDictionary class]]) {
-            [mutableArray addObject:[self dictionarySerializer:value]];
-        } else {
-            [mutableArray addObject:value];
+            continue;
         }
+        if ([value isKindOfClass:[NSArray class]]){
+            [mutableArray addObject:[self toArray:value]];
+            continue;
+        }
+        [mutableArray addObject:value];
     }
     return mutableArray;
 }
 
-- (id)valueSerializer:(id)value key:(NSString *)key {
-    NSString *type  = [_attributes valueForKey:key];
+- (id)toValue:(id)value key:(NSString *)key type:(NSString *)type {
     if ([type isEqualToString:@"q"]) {
         long long longValue = (long long)[value longLongValue];
         return @(longValue);
@@ -347,10 +310,6 @@ static NSArray<Attribute *> *_attributes = nil;
 
 - (BOOL)isInitiated {
     return _initiated;
-}
-
-- (void)setIsInitiated:(BOOL)initiated {
-    _initiated = initiated;
 }
 
 @end

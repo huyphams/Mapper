@@ -40,7 +40,6 @@ NS_ASSUME_NONNULL_BEGIN
  *  @return Initial state.
  */
 - (BOOL)isInitiated;
-- (void)setIsInitiated:(BOOL)initiated;
 
 @end
 
