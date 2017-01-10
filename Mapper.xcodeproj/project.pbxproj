@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E597C6601E24D79000DE38B2 /* Decoder.m in Sources */ = {isa = PBXBuildFile; fileRef = E597C65F1E24D79000DE38B2 /* Decoder.m */; };
+		E597C6631E24DD8B00DE38B2 /* BaseModel.m in Sources */ = {isa = PBXBuildFile; fileRef = E597C6621E24DD8B00DE38B2 /* BaseModel.m */; };
 		E5AD44921E05CD9200833E4A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5AD44911E05CD9200833E4A /* AppDelegate.swift */; };
 		E5AD44991E05CD9200833E4A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E5AD44981E05CD9200833E4A /* Assets.xcassets */; };
 		E5AD44A81E05CDB600833E4A /* Model.m in Sources */ = {isa = PBXBuildFile; fileRef = E5AD44A71E05CDB600833E4A /* Model.m */; };
@@ -16,6 +18,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		E597C65E1E24D79000DE38B2 /* Decoder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Decoder.h; sourceTree = "<group>"; };
+		E597C65F1E24D79000DE38B2 /* Decoder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Decoder.m; sourceTree = "<group>"; };
+		E597C6611E24DD8B00DE38B2 /* BaseModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseModel.h; sourceTree = "<group>"; };
+		E597C6621E24DD8B00DE38B2 /* BaseModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseModel.m; sourceTree = "<group>"; };
 		E5AD448E1E05CD9200833E4A /* Mapper.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Mapper.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E5AD44911E05CD9200833E4A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E5AD44981E05CD9200833E4A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -75,6 +81,8 @@
 			children = (
 				E5AD44A61E05CDB600833E4A /* Model.h */,
 				E5AD44A71E05CDB600833E4A /* Model.m */,
+				E597C6611E24DD8B00DE38B2 /* BaseModel.h */,
+				E597C6621E24DD8B00DE38B2 /* BaseModel.m */,
 				E5AD44A51E05CDB600833E4A /* Mapper-Bridging-Header.h */,
 			);
 			name = Model;
@@ -87,6 +95,8 @@
 				E5AD44AB1E05CDEB00833E4A /* Mapper.m */,
 				E5AD44AC1E05CDEB00833E4A /* MapperUtils.h */,
 				E5AD44AD1E05CDEB00833E4A /* MapperUtils.m */,
+				E597C65E1E24D79000DE38B2 /* Decoder.h */,
+				E597C65F1E24D79000DE38B2 /* Decoder.m */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -164,8 +174,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E597C6631E24DD8B00DE38B2 /* BaseModel.m in Sources */,
 				E5AD44AF1E05CDEB00833E4A /* MapperUtils.m in Sources */,
 				E5AD44AE1E05CDEB00833E4A /* Mapper.m in Sources */,
+				E597C6601E24D79000DE38B2 /* Decoder.m in Sources */,
 				E5AD44A81E05CDB600833E4A /* Model.m in Sources */,
 				E5AD44921E05CD9200833E4A /* AppDelegate.swift in Sources */,
 			);

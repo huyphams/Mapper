@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "Decoder.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -28,31 +29,7 @@ typedef NS_ENUM(NSInteger, MapperEvent){
     MapperEventOnChange = 0x03
 };
 
-@interface Mapper : NSObject
-
-/**
- *  Auto Mapper properties object with dictionary/json.
- *
- *  @param dictionary Data to Mapper.
- *
- *  @return Object Mapper.
- */
-- (instancetype)initWithDictionary:(nullable NSDictionary *)dictionary;
-
-/**
- *  Auto Mapper properties object with dictionary/json.
- *
- *  @param dictionary Data to Mapper.
- */
-- (void)initData:(nullable NSDictionary *)dictionary;
-
-/**
- *  Convert object to dictionary.
- *
- *  @return Object dictionary.
- */
-- (NSDictionary *)toDictionary;
-
+@interface Mapper : Decoder
 /**
  *  Register reaction for property on an event.
  *
@@ -232,15 +209,7 @@ typedef NS_ENUM(NSInteger, MapperEvent){
  *  Fetch data in background and handle data when fetch data completed.
  */
 - (void)fetchInBackground:(nullable void(^)(id response,  NSError * _Nullable error))completion;
-
-/**
- *  Object initial status.
- *
- *  @return Initial state.
- */
-- (BOOL)isInitiated;
 - (BOOL)isFetching;
-- (void)setIsInitiated:(BOOL)initiated;
 
 @end
 

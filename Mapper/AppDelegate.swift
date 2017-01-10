@@ -12,18 +12,19 @@ import UIKit
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-    let model = Model()
+    let model = Model(dictionary: ["Name": "This name", "ID": "This is ID from super class"])
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         
         model.property("Name", target: self, selector: #selector(AppDelegate.ChangeName), on: .onChange)
-        model.initData(["Name": "Carrot", "ID": "A2jsdk"])
+        model.name = "New name, this is change because trigger function"
         
         return true
     }
     
     func ChangeName() {
         print(model.name)
+        print(model.id)
     }
 }
 

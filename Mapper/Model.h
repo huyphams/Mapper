@@ -6,11 +6,10 @@
 //  Copyright © 2016 Huy Pham. All rights reserved.
 //
 
-#import "Mapper.h"
+#import "BaseModel.h"
 
-@interface Model : Mapper
+@interface Model : BaseModel
 
-@property (nonatomic, copy) NSString *ID;
 @property (nonatomic, copy) NSString *Name;
 
 @end

@@ -20,8 +20,7 @@ Or you can set selector trigger whatever field change value.
 
 #### Limitations
 
-- Can't init property of super class.
-- Can't setup selector with params.
+- Can't setup selector with params. (Will support later).
 
 #### Prop
 
@@ -38,5 +37,4 @@ Or you can set selector trigger whatever field change value.
 
 #### Improvement
 
-- Try to resolve limitation (but seems no luck).
-- Cached properties list to speedup initData (in case we need to init millions objects).
+- Support selector with params.
