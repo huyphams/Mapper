@@ -60,6 +60,14 @@ static NSArray<Attribute *> *_attributes = nil;
 
 @implementation Decoder
 
++ (NSArray<Attribute *> *)attributes {
+    return _attributes;
+}
+
++ (void)setAttributes:(NSArray<Attribute *> *)attributes {
+    _attributes = attributes;
+}
+
 + (NSArray<Attribute *> *)getAttributeForClass:(Class)class {
     NSMutableArray<Attribute *> *attributes = [NSMutableArray array];
     unsigned int outCount;
@@ -102,7 +110,6 @@ static NSArray<Attribute *> *_attributes = nil;
     return property;
 }
 
-
 - (instancetype)init {
     return [self initWithDictionary:nil];
 }
@@ -131,14 +138,6 @@ static NSArray<Attribute *> *_attributes = nil;
 - (void)commonInit {
     _initiated = NO;
     _attributes = [[NSMutableDictionary alloc] init];
-}
-
-+ (NSArray<Attribute *> *)attributes {
-    return _attributes;
-}
-
-+ (void)setAttributes:(NSArray<Attribute *> *)attributes {
-    _attributes = attributes;
 }
 
 - (NSArray<Attribute *> *)attributes {

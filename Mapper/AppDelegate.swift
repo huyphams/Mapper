@@ -19,6 +19,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         model.property("Name", target: self, selector: #selector(AppDelegate.ChangeName), on: .onChange)
         model.name = "New name, this is change because trigger function"
         
+        let m = Model()
+        print("\(m.isInitiated())")
+        
         return true
     }
     
