@@ -470,7 +470,8 @@ static void * const MapperContext = (void*)&MapperContext;
     NSMutableArray *actionsToDelete = [NSMutableArray array];
     NSArray *actions = [self getActionsOfProperty:keyPath
                                           onEvent:event];
-    [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+    NSOperationQueue *backgroundQueue = [[NSOperationQueue alloc] init];
+    [backgroundQueue addOperationWithBlock:^{
         for (MapperAction *action in actions) {
             id target = action.target;
             if (target) {

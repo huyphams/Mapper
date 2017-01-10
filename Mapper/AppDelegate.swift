@@ -10,7 +10,7 @@ import UIKit
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
-
+    
     var window: UIWindow?
     let model = Model(dictionary: ["Name": "This name", "ID": "This is ID from super class"])
     
@@ -19,8 +19,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         model.property("Name", target: self, selector: #selector(AppDelegate.ChangeName), on: .onChange)
         model.name = "New name, this is change because trigger function"
         
-        let m = Model()
-        print("\(m.isInitiated())")
+        let methodStart = Date()
+        
+        // Test performance
+        for _ in 0...1000000 {
+            _ = Model(dictionary: ["Name": "This name", "ID": "This is ID from super class"])
+        }
+        
+        let methodFinish = Date()
+        let executionTime = methodFinish.timeIntervalSince(methodStart)
+        print("Execution time: \(executionTime)")
         
         return true
     }
