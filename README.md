@@ -24,11 +24,12 @@ Or you can set selector trigger whatever field change value.
 
 #### Prop
 
-- Easy to use and define
+- Easy to use and define.
 - Reduce bugs by typo and boring manual mapping code.
-- Deduce bugs by null, nil and optional wrapping.
-- Have many utils.
+- Reduce bugs by null, nil, NSNull and optional wrapping when handle Json from server.
+- Included networking and many utils.
 - Work fine with Objective-C and Swift.
+- Have binding and it will not crash when you forgot remove KVO before release object.
 
 #### Cons
 
