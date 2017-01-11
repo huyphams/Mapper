@@ -185,9 +185,8 @@ static NSDictionary *_attributes = nil;
     if (!instanceType) {
         if ([NSClassFromString(propertyType) isSubclassOfClass:[Decoder class]]) {
             instanceType = [[NSClassFromString(propertyType) alloc] initWithDictionary:value];
-            [self setValue:instanceType
-                    forKey:propertyName];
-            return;
+            return [self setValue:instanceType
+                           forKey:propertyName];
         }
         instanceType = [NSClassFromString(propertyType) alloc];
     }
@@ -208,18 +207,20 @@ static NSDictionary *_attributes = nil;
     // Check value
     if (value && value != [NSNull null]) {
         if ([propertyType respondsToSelector:@selector(initData:)]) {
-            [instanceType initData:value];
-        } else if ([instanceType respondsToSelector:@selector(initWithArray:)]) {
-            [self setValue:[instanceType initWithArray:value]
-                    forKey:propertyName];
-        } else if ([instanceType respondsToSelector:@selector(initWithDictionary:)]) {
-            [self setValue:[instanceType initWithDictionary:value]
-                    forKey:propertyName];
-        } else {
-            [self setValue:value
-                    forKey:propertyName];
+            return [instanceType initData:value];
         }
-        return;
+        
+        if ([instanceType respondsToSelector:@selector(initWithArray:)]) {
+            return [self setValue:[instanceType initWithArray:value]
+                           forKey:propertyName];
+        }
+        
+        if ([instanceType respondsToSelector:@selector(initWithDictionary:)]) {
+            return [self setValue:[instanceType initWithDictionary:value]
+                           forKey:propertyName];
+        }
+        return [self setValue:value
+                       forKey:propertyName];
     }
     
     // Call default function

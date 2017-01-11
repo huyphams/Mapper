@@ -477,9 +477,9 @@ static void * const MapperContext = (void*)&MapperContext;
             if (target) {
                 ((void (*)(id, SEL))[target methodForSelector:action.selector])(target,
                                                                                 action.selector);
-            } else {
-                [actionsToDelete addObject:action];
+                continue;
             }
+            [actionsToDelete addObject:action];
         }
         for (MapperAction *action in actionsToDelete) {
             [self removeActionsForProperty:action.keyPath
