@@ -1,13 +1,25 @@
 
-#### Why
+## Why
+I know many of open source out there have feature JSON deserialization, but you need to keep implement boring mapping functions by your hand. I created Mapper with objetive-c runtime so you don't need to do it anymore. It's awesome.
 
-I know many of open source out there have feature JSON deserialization, but you need to implement boring mapping functions by your hand so I created Mapper with objetive-c runtime so you don't need to do it anymore. It's awesome.
-
-This is Mapper (can integrate with Swift probject as example). Mapper can map JSON to objects and
-map objects to JSON without manual implementation and much more. It's very simple and easy to use.
+Mapper can integrate with Swift probject (as example), map JSON to objects and map objects to JSON without manual implementation. It's very simple and easy to use.
 
 ```
-    // Create model inheritance Mapper class
+    // Create model inheritance Mapper class and that's all
+    // Objective-C (Recommended)
+    #import "Mapper.h"
+
+    @interface BaseModel : Mapper
+        @property (nonatomic, copy) NSString *ID;
+        @property (nonatomic, copy) NSString *Name;
+    @end
+
+    // Or Swift
+    class Carrot: Mapper {  
+      dynamic var ID: NSString!
+      dynamic var name: NSString!
+    }
+
     let model = Model()
    
    // Init it with json
