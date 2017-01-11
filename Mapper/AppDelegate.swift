@@ -26,7 +26,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
         
         print("\(model.toDictionary() as! [String: AnyObject])")
-        
+                
         return true
     }
     

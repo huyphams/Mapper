@@ -21,6 +21,7 @@ Or you can set selector trigger whatever field change value.
 #### Limitations
 
 - Can't setup selector with params. (Will support later).
+- Field name must be matched with json field name, we should have field description for customize mapping.
 
 #### Prop
 
@@ -30,6 +31,7 @@ Or you can set selector trigger whatever field change value.
 - Included networking and many utils.
 - Work fine with Objective-C and Swift.
 - Have binding and it will not crash when you forgot remove KVO before release object.
+- Mapper uses runtime functions but super fast because it cached all properties when init Model for the first time.
 
 #### Cons
 
