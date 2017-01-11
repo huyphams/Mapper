@@ -1,4 +1,10 @@
-This is Mapper for class (can integrate with Swift probject as example) to Unmarshal JSON to Class without manual mapping. It's very simple and easy to use.
+
+#### Why
+
+I know many of open source out there have feature JSON deserialization, but you need to implement boring mapping functions by your hand so I created Mapper with objetive-c runtime so you don't need to do it anymore. It's awesome.
+
+This is Mapper (can integrate with Swift probject as example). Mapper can map JSON to objects and
+map objects to JSON without manual implementation and much more. It's very simple and easy to use.
 
 ```
     // Create model inheritance Mapper class
@@ -20,7 +26,7 @@ Or you can set selector trigger whatever field change value.
 
 #### Limitations
 
-- Can't setup selector with params. (Will support later).
+- Can't setup selector with params.
 - Field name must be matched with json field name, we should have field description for customize mapping.
 
 #### Prop
