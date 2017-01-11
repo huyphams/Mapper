@@ -20,10 +20,17 @@ Mapper can integrate with Swift probject (as example), map JSON to objects and m
       dynamic var name: NSString!
     }
 
-    let model = Model()
-   
+    let model = Model()   
    // Init it with json
-   model.initData(["Name": "Carrot", "ID": "A2jsdk"]) 
+    model.initData(["Name": "Carrot", "ID": "A2jsdk"])
+
+   // Or simple
+    let model = Model(dictionary: ["Name": "This name", "ID": "This is ID from super class"])
+```
+
+Sometimes you need to convert it back to JSON
+```
+    model.toDictionary()
 ```
 
 Or you can set selector trigger whatever field change value.
