@@ -54,16 +54,24 @@ static const char *getPropertyType(objc_property_t property) {
 
 @end
 
-static NSArray<Attribute *> *_attributes = nil;
+static NSDictionary *_attributes = nil;
 
 @implementation Decoder
 
-+ (NSArray<Attribute *> *)attributes {
-    return _attributes;
++ (NSArray<Attribute *> *)attributesForClass:(Class)class {
+    NSString *classIdent = NSStringFromClass(class);
+    return [_attributes valueForKey:classIdent];
 }
 
-+ (void)setAttributes:(NSArray<Attribute *> *)attributes {
-    _attributes = attributes;
++ (void)setAttributes:(NSArray<Attribute *> *)attributes forClass:(Class)class {
+    NSString *classIdent = NSStringFromClass(class);
+    if (_attributes) {
+        NSMutableDictionary *dic = [NSMutableDictionary dictionaryWithObjectsAndKeys:attributes, classIdent, nil];
+        [dic addEntriesFromDictionary:_attributes];
+        _attributes = dic;
+        return;
+    }
+    _attributes = [NSDictionary dictionaryWithObjectsAndKeys:attributes, classIdent, nil];
 }
 
 + (NSArray<Attribute *> *)getAttributeForClass:(Class)class {
@@ -135,29 +143,35 @@ static NSArray<Attribute *> *_attributes = nil;
 }
 
 - (NSArray<Attribute *> *)attributes {
-    if ([Decoder attributes]) {
-        return [Decoder attributes];
+    Class class = [self class];
+    NSArray<Attribute *> *existedAttributes = [Decoder attributesForClass:class];
+    if (existedAttributes) {
+        return existedAttributes;
     }
     NSMutableArray<Attribute *> *attributes = [NSMutableArray array];
-    Class class = [self class];
-    while ([class superclass] != [Decoder class] && [class isSubclassOfClass:[Decoder class]]) {
-        NSArray *attrs = [Decoder getAttributeForClass:class];
+    
+    Class superClass = class;
+    while ([superClass superclass] != [Decoder class] && [superClass isSubclassOfClass:[Decoder class]]) {
+        NSArray *attrs = [Decoder getAttributeForClass:superClass];
         [attributes addObjectsFromArray:attrs];
-        class = [class superclass];
+        superClass = [superClass superclass];
     }
     
-    [Decoder setAttributes:attributes];
+    [Decoder setAttributes:attributes
+                  forClass:class];
     return attributes;
 }
 
 - (void)initData:(NSDictionary *)dictionary {
     // Automic
     @synchronized (self) {
-        for(Attribute *attribute in [self attributes]) {
-            id value = [dictionary objectForKey:attribute.nameWithoutUnderscore];
-            [self setProperty:attribute.name
-                 propertyType:attribute.type
-                        value:value];
+        @autoreleasepool {
+            for(Attribute *attribute in [self attributes]) {
+                id value = [dictionary objectForKey:attribute.nameWithoutUnderscore];
+                [self setProperty:attribute.name
+                     propertyType:attribute.type
+                            value:value];
+            }
         }
     }
 }
@@ -166,43 +180,55 @@ static NSArray<Attribute *> *_attributes = nil;
        propertyType:(NSString *)propertyType
               value:(id)value {
     id instanceType = [self valueForKey:propertyName];
+    
+    // Init instance
     if (!instanceType) {
         if ([NSClassFromString(propertyType) isSubclassOfClass:[Decoder class]]) {
             instanceType = [[NSClassFromString(propertyType) alloc] initWithDictionary:value];
-            [self setValue:instanceType forKey:propertyName];
+            [self setValue:instanceType
+                    forKey:propertyName];
             return;
         }
         instanceType = [NSClassFromString(propertyType) alloc];
-    } else {
-        if ([instanceType isKindOfClass:[NSArray class]]) {
-            instanceType = [NSArray alloc];
-        } else if ([instanceType isKindOfClass:[NSMutableArray class]]){
-            instanceType = [NSMutableArray alloc];
-        } else if ([instanceType isKindOfClass:[NSDictionary class]]) {
-            instanceType = [NSDictionary alloc];
-        } else if ([instanceType isKindOfClass:[NSMutableDictionary class]]) {
-            instanceType = [NSMutableDictionary alloc];
-        } else if ([instanceType isKindOfClass:[NSString class]]) {
-            instanceType = [NSString alloc];
-        }
     }
+    
+    // Alloc instance
+    if ([instanceType isKindOfClass:[NSArray class]]) {
+        instanceType = [NSArray alloc];
+    } else if ([instanceType isKindOfClass:[NSMutableArray class]]){
+        instanceType = [NSMutableArray alloc];
+    } else if ([instanceType isKindOfClass:[NSDictionary class]]) {
+        instanceType = [NSDictionary alloc];
+    } else if ([instanceType isKindOfClass:[NSMutableDictionary class]]) {
+        instanceType = [NSMutableDictionary alloc];
+    } else if ([instanceType isKindOfClass:[NSString class]]) {
+        instanceType = [NSString alloc];
+    }
+    
+    // Check value
     if (value && value != [NSNull null]) {
         if ([propertyType respondsToSelector:@selector(initData:)]) {
             [instanceType initData:value];
         } else if ([instanceType respondsToSelector:@selector(initWithArray:)]) {
-            [self setValue:[instanceType initWithArray:value] forKey:propertyName];
+            [self setValue:[instanceType initWithArray:value]
+                    forKey:propertyName];
         } else if ([instanceType respondsToSelector:@selector(initWithDictionary:)]) {
-            [self setValue:[instanceType initWithDictionary:value] forKey:propertyName];
+            [self setValue:[instanceType initWithDictionary:value]
+                    forKey:propertyName];
         } else {
-            [self setValue:value forKey:propertyName];
+            [self setValue:value
+                    forKey:propertyName];
         }
+        return;
+    }
+    
+    // Call default function
+    SEL selector = NSSelectorFromString([NSString stringWithFormat:@"_%@", propertyName]);
+    if ([self respondsToSelector:selector]) {
+        ((void (*)(id, SEL))[self methodForSelector:selector])(self, selector);
     } else {
-        SEL selector = NSSelectorFromString([NSString stringWithFormat:@"_%@", propertyName]);
-        if ([self respondsToSelector:selector]) {
-            ((void (*)(id, SEL))[self methodForSelector:selector])(self, selector);
-        } else {
-            [self setValue:[instanceType init] forKey:propertyName];
-        }
+        [self setValue:[instanceType init]
+                forKey:propertyName];
     }
 }
 

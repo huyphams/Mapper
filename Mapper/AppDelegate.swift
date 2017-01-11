@@ -18,7 +18,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         model.property("Name", target: self, selector: #selector(AppDelegate.ChangeName), on: .onChange)
         model.name = "New name, this is change because trigger function"
-                
+        
+        // Test perfomance
+        for _ in 0...100 {
+            _ = Model.init(dictionary: ["Name": "This name", "ID": "This is ID from super class"])
+            _ = BaseModel.init(dictionary: ["Name": "This name", "ID": "This is ID from super class"])
+        }
+        
         print("\(model.toDictionary() as! [String: AnyObject])")
         
         return true
