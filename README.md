@@ -17,7 +17,7 @@ Mapper can integrate with Swift probject (as example), map JSON to objects and m
     // Or Swift
     class Carrot: Mapper {  
       dynamic var ID: NSString!
-      dynamic var name: NSString!
+      dynamic var Name: NSString!
     }
 
     let model = Model()   
