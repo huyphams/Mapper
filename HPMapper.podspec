@@ -1,8 +1,8 @@
 Pod::Spec.new do |s|
 
-  s.name         = "Mapper"
+  s.name         = "HPMapper"
   s.version      = "0.0.1"
-  s.summary      = "Mapper can integrate with Swift probject (as example), map JSON to objects and map objects to JSON without manual implementation. It's very simple and easy to use."
+  s.summary      = "Mapper can integrate with Swift probject, map JSON to objects and map objects to JSON without manual implementation."
   s.homepage     = "http://huypham.me"
   s.license      = "MIT"
   s.author             = { "Huy Pham" => "duchuykun@gmail.com" }
