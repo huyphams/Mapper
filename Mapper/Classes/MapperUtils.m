@@ -69,7 +69,11 @@ completionHandler:(void(^)(id, NSError *))completion {
     if (![requestMethod isEqualToString:@"GET"] &&
         ![requestMethod isEqualToString:@"POST"] &&
         ![requestMethod isEqualToString:@"PUT"] &&
-        ![requestMethod isEqualToString:@"DELETE"]) {
+        ![requestMethod isEqualToString:@"DELETE"] &&
+        ![requestMethod isEqualToString:@"HEAD"] &&
+        ![requestMethod isEqualToString:@"CONNECT"] &&
+        ![requestMethod isEqualToString:@"OPTIONS"] &&
+        ![requestMethod isEqualToString:@"TRACE"]){
         NSLog(@"Unsupport method %@", method);
         return;
     }
