@@ -11,6 +11,6 @@
 @interface Model : BaseModel
 
 @property (nonatomic, copy) NSString *Name;
-@property (nonatomic, strong) NSDictionary *dic;
+@property (nonatomic, copy) NSString *ObjectID;
 
 @end

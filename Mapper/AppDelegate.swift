@@ -6,33 +6,26 @@
 //  Copyright © 2016 Huy Pham. All rights reserved.
 //
 
+// This app is super simple :D
+
 import UIKit
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
+  
+  var window: UIWindow?
+  
+  func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
     
-    var window: UIWindow?
-    let model = Model(dictionary: ["Name": "This name", "ID": "This is ID from super class"])
+    // Setup root view controller
+    let homeController = HomeController()
+    let window = UIWindow(frame: UIScreen.main.bounds)
+    self.window = window
     
-    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-        
-        model.property("Name", target: self, selector: #selector(AppDelegate.ChangeName), on: .onChange)
-        model.name = "New name, this is change because trigger function"
-        
-        // Test perfomance and memory leak
-        for _ in 0...1000 {
-            _ = Model.init(dictionary: ["Name": "This name", "ID": "This is ID from super class"])
-            _ = BaseModel.init(dictionary: ["Name": "This name", "ID": "This is ID from super class"])
-        }
-        
-        print("\(model.toDictionary() as! [String: AnyObject])")
-                
-        return true
-    }
+    window.rootViewController = homeController
+    window.makeKeyAndVisible()
     
-    func ChangeName() {
-        print(model.name)
-        print(model.id)
-    }
+    return true
+  }
 }
 
