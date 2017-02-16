@@ -6,7 +6,6 @@
 //  Copyright (c) 2015 Katana. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
 #import "Decoder.h"
 #import <objc/runtime.h>
 
@@ -295,36 +294,6 @@ static NSDictionary *_attributes = nil;
     if ([type isEqualToString:@"d"]) {
         double floatValue = [value floatValue];
         return @(floatValue);
-    }
-    
-    if ([type isEqualToString:@"{CGSize=dd}"]) {
-        CGSize size = [value CGSizeValue];
-        NSMutableDictionary *sizeDictionary = [NSMutableDictionary dictionary];
-        [sizeDictionary setValue:@(size.width) forKey:@"width"];
-        [sizeDictionary setValue:@(size.height) forKey:@"height"];
-        return sizeDictionary;
-    }
-    
-    if ([type isEqualToString:@"{CGRect={CGPoint=dd}{CGSize=dd}}"]) {
-        CGRect rect = [value CGRectValue];
-        NSMutableDictionary *rectDictionary = [NSMutableDictionary dictionary];
-        NSMutableDictionary *sizeDictionary = [NSMutableDictionary dictionary];
-        [sizeDictionary setValue:@(rect.size.width) forKey:@"width"];
-        [sizeDictionary setValue:@(rect.size.height) forKey:@"height"];
-        NSMutableDictionary *originDictionary = [NSMutableDictionary dictionary];
-        [originDictionary setValue:@(rect.origin.x) forKey:@"x"];
-        [originDictionary setValue:@(rect.origin.y) forKey:@"y"];
-        [rectDictionary setValue:sizeDictionary forKey:@"size"];
-        [rectDictionary setValue:originDictionary forKey:@"origin"];
-        return rectDictionary;
-    }
-    
-    if ([type isEqualToString:@"{CGPoint=dd}"]) {
-        CGPoint point = [value CGPointValue];
-        NSMutableDictionary *pointDictionary = [NSMutableDictionary dictionary];
-        [pointDictionary setValue:@(point.x) forKey:@"x"];
-        [pointDictionary setValue:@(point.y) forKey:@"y"];
-        return pointDictionary;
     }
     
     if ([type isEqualToString:@"NSString"]) {
