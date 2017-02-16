@@ -4,6 +4,17 @@ I know many of open source out there have feature JSON deserialization, but you 
 
 Mapper can integrate with Swift probject (as example), map JSON to objects and map objects to JSON without manual implementation. It's very simple and easy to use.
 
+## Installation
+
+```
+  pod "HPMapper"
+
+```
+
+## How it works
+
+#### Create model
+
 ```
     // Create model inheritance Mapper class and that's all
     // Objective-C (Recommended)
@@ -28,12 +39,12 @@ Mapper can integrate with Swift probject (as example), map JSON to objects and m
     let model = Model(dictionary: ["Name": "This name", "ID": "This is ID from super class"])
 ```
 
-Sometimes you need to convert it back to JSON
+#### Sometimes you need to convert it back to JSON
 ```
     model.toDictionary()
 ```
 
-Or you can set selector trigger whatever field change value.
+#### You can set selector trigger whatever field change value.
 
 ```
    // Setup selector trigger
