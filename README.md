@@ -60,7 +60,7 @@ Mapper can integrate with Swift probject (as example), map JSON to objects and m
 - Field name must be matched with json field name, we should have field description for customize mapping.
 
 ## Prop
-
+- Support both iOS and OSX.
 - Easy to use and define.
 - Reduce bugs by typo and boring manual mapping code.
 - Reduce bugs by null, nil, NSNull and optional wrapping when handle Json from server.
