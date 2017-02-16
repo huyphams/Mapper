@@ -8,7 +8,6 @@ Mapper can integrate with Swift probject (as example), map JSON to objects and m
 
 ```
   pod "HPMapper"
-
 ```
 
 ## How it works
@@ -40,6 +39,7 @@ Mapper can integrate with Swift probject (as example), map JSON to objects and m
 ```
 
 #### Sometimes you need to convert it back to JSON
+
 ```
     model.toDictionary()
 ```
@@ -54,12 +54,12 @@ Mapper can integrate with Swift probject (as example), map JSON to objects and m
    model.name = "New name"
 ```
 
-#### Limitations
+## Limitations
 
 - Can't setup selector with params.
 - Field name must be matched with json field name, we should have field description for customize mapping.
 
-#### Prop
+## Prop
 
 - Easy to use and define.
 - Reduce bugs by typo and boring manual mapping code.
@@ -69,11 +69,11 @@ Mapper can integrate with Swift probject (as example), map JSON to objects and m
 - Have binding and it will not crash when you forgot remove KVO before release object.
 - Mapper uses runtime functions but super fast because it cached all properties when init Model for the first time.
 
-#### Cons
+## Cons
 
 - Still Objective-C.
 - Still have some limitations.
 
-#### Improvement
+## Improvement
 
 - Support selector with params.
