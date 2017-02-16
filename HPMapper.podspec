@@ -7,7 +7,8 @@ Pod::Spec.new do |s|
   s.license      = "MIT"
   s.author             = { "Huy Pham" => "duchuykun@gmail.com" }
   s.social_media_url   = "https://www.instagram.com/huyphams"
-  s.platform     = :ios, "9.0"
+  s.ios.deployment_target = '9.0'
+  s.osx.deployment_target = '10.12'
   s.source       = { :git => "https://github.com/huyphams/Mapper.git", :tag => "#{s.version}" }
   s.source_files  = "Mapper/Classes/*.{h,m}"
   s.requires_arc = true
