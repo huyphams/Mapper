@@ -22,19 +22,22 @@ class HomeController: UIViewController {
     self.view.backgroundColor = .white
     
     // Init view
-    self.nameField.frame = CGRect(x: 10, y: 60, width: self.view.bounds.width - 20, height: 20)
+    self.nameField.frame = CGRect(x: 10, y: 45, width: self.view.bounds.width - 20, height: 25)
     self.nameField.placeholder = "Name"
+    self.nameField.font = UIFont(name: "HelveticaNeue", size: 14)
     self.nameField.addTarget(self, action: #selector(HomeController.ChangeName), for: .editingChanged)
-    self.nameField.backgroundColor = .green
-
-    self.idField.frame = CGRect(x: 10, y: 100, width: self.view.bounds.width - 20, height: 20)
+    
+    self.idField.frame = CGRect(x: 10, y: 85, width: self.view.bounds.width - 20, height: 25)
     self.idField.placeholder = "ObjectID"
+    self.idField.font = UIFont(name: "HelveticaNeue", size: 14)
     self.idField.addTarget(self, action: #selector(HomeController.ChangeID), for: .editingChanged)
-    self.idField.backgroundColor = .green
-
-    self.textView.frame = CGRect(x: 10, y: 160, width: self.view.bounds.width - 20, height: 200)
-    self.textView.backgroundColor = .blue
+    
+    self.textView.frame = CGRect(x: 10, y: 130, width: self.view.bounds.width - 20, height: 200)
+    self.textView.backgroundColor = .lightGray
     self.textView.isEditable = false
+    self.textView.layer.cornerRadius = 3
+    
+    self.textView.text = "Edit two text fields above and see how it works"
     
     self.view.addSubview(self.textView)
     self.view.addSubview(self.nameField)
@@ -55,8 +58,14 @@ class HomeController: UIViewController {
   
   func UpdateTextView() {
     Dispatcher.delay(0) {
-      self.textView.text = "\(self.model.toDictionary() as! [String: AnyObject])"
+      self.textView.text = "model.toDictionary():\n \(self.model.toDictionary() as! [String: AnyObject])"
     }
+  }
+  
+  override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+    super.touchesBegan(touches, with: event)
+    self.nameField.endEditing(true)
+    self.idField.endEditing(true)
   }
 }
 
