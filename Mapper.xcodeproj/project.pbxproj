@@ -14,7 +14,6 @@
 		E5AD44A81E05CDB600833E4A /* Model.m in Sources */ = {isa = PBXBuildFile; fileRef = E5AD44A71E05CDB600833E4A /* Model.m */; };
 		E5AD44AE1E05CDEB00833E4A /* Mapper.m in Sources */ = {isa = PBXBuildFile; fileRef = E5AD44AB1E05CDEB00833E4A /* Mapper.m */; };
 		E5AD44AF1E05CDEB00833E4A /* MapperUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = E5AD44AD1E05CDEB00833E4A /* MapperUtils.m */; };
-		E5AD44B11E05CF4400833E4A /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E5AD44B01E05CF4400833E4A /* Default-568h@2x.png */; };
 		E5E446121E55643000D49C2B /* HomeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5E446111E55643000D49C2B /* HomeController.swift */; };
 /* End PBXBuildFile section */
 
@@ -34,7 +33,6 @@
 		E5AD44AB1E05CDEB00833E4A /* Mapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Mapper.m; sourceTree = "<group>"; };
 		E5AD44AC1E05CDEB00833E4A /* MapperUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapperUtils.h; sourceTree = "<group>"; };
 		E5AD44AD1E05CDEB00833E4A /* MapperUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapperUtils.m; sourceTree = "<group>"; };
-		E5AD44B01E05CF4400833E4A /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default-568h@2x.png"; path = "../Default-568h@2x.png"; sourceTree = "<group>"; };
 		E5E446111E55643000D49C2B /* HomeController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HomeController.swift; path = Controllers/HomeController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -72,7 +70,6 @@
 				E5AD44A91E05CDEB00833E4A /* Classes */,
 				E5AD44A41E05CD9E00833E4A /* Model */,
 				E5AD44911E05CD9200833E4A /* AppDelegate.swift */,
-				E5AD44B01E05CF4400833E4A /* Default-568h@2x.png */,
 				E5AD44981E05CD9200833E4A /* Assets.xcassets */,
 				E5AD449D1E05CD9200833E4A /* Info.plist */,
 			);
@@ -174,7 +171,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				E5AD44991E05CD9200833E4A /* Assets.xcassets in Resources */,
-				E5AD44B11E05CF4400833E4A /* Default-568h@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -295,6 +291,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = YES;
 				DEVELOPMENT_TEAM = 3X57WP8E8V;
 				INFOPLIST_FILE = Mapper/Info.plist;
@@ -311,6 +308,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = YES;
 				DEVELOPMENT_TEAM = 3X57WP8E8V;
 				INFOPLIST_FILE = Mapper/Info.plist;
