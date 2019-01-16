@@ -15,7 +15,20 @@
 		E5AD44AE1E05CDEB00833E4A /* Mapper.m in Sources */ = {isa = PBXBuildFile; fileRef = E5AD44AB1E05CDEB00833E4A /* Mapper.m */; };
 		E5AD44AF1E05CDEB00833E4A /* MapperUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = E5AD44AD1E05CDEB00833E4A /* MapperUtils.m */; };
 		E5E446121E55643000D49C2B /* HomeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5E446111E55643000D49C2B /* HomeController.swift */; };
+		E907FDD521EF059A0051E0E3 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = E907FDD421EF059A0051E0E3 /* main.swift */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		E907FDD021EF059A0051E0E3 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = /usr/share/man/man1/;
+			dstSubfolderSpec = 0;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		E597C65E1E24D79000DE38B2 /* Decoder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Decoder.h; sourceTree = "<group>"; };
@@ -34,10 +47,19 @@
 		E5AD44AC1E05CDEB00833E4A /* MapperUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapperUtils.h; sourceTree = "<group>"; };
 		E5AD44AD1E05CDEB00833E4A /* MapperUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapperUtils.m; sourceTree = "<group>"; };
 		E5E446111E55643000D49C2B /* HomeController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HomeController.swift; path = Controllers/HomeController.swift; sourceTree = "<group>"; };
+		E907FDD221EF059A0051E0E3 /* MapperMacOS */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = MapperMacOS; sourceTree = BUILT_PRODUCTS_DIR; };
+		E907FDD421EF059A0051E0E3 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		E5AD448B1E05CD9200833E4A /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E907FDCF21EF059A0051E0E3 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -51,6 +73,7 @@
 			isa = PBXGroup;
 			children = (
 				E5AD44901E05CD9200833E4A /* Mapper */,
+				E907FDD321EF059A0051E0E3 /* MapperMacOS */,
 				E5AD448F1E05CD9200833E4A /* Products */,
 			);
 			sourceTree = "<group>";
@@ -59,6 +82,7 @@
 			isa = PBXGroup;
 			children = (
 				E5AD448E1E05CD9200833E4A /* Mapper.app */,
+				E907FDD221EF059A0051E0E3 /* MapperMacOS */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -109,6 +133,14 @@
 			name = Controllers;
 			sourceTree = "<group>";
 		};
+		E907FDD321EF059A0051E0E3 /* MapperMacOS */ = {
+			isa = PBXGroup;
+			children = (
+				E907FDD421EF059A0051E0E3 /* main.swift */,
+			);
+			path = MapperMacOS;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -129,13 +161,30 @@
 			productReference = E5AD448E1E05CD9200833E4A /* Mapper.app */;
 			productType = "com.apple.product-type.application";
 		};
+		E907FDD121EF059A0051E0E3 /* MapperMacOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E907FDD821EF059A0051E0E3 /* Build configuration list for PBXNativeTarget "MapperMacOS" */;
+			buildPhases = (
+				E907FDCE21EF059A0051E0E3 /* Sources */,
+				E907FDCF21EF059A0051E0E3 /* Frameworks */,
+				E907FDD021EF059A0051E0E3 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = MapperMacOS;
+			productName = MapperMacOS;
+			productReference = E907FDD221EF059A0051E0E3 /* MapperMacOS */;
+			productType = "com.apple.product-type.tool";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
 		E5AD44861E05CD9200833E4A /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 0820;
+				LastSwiftUpdateCheck = 1010;
 				LastUpgradeCheck = 1010;
 				ORGANIZATIONNAME = "Huy Pham";
 				TargetAttributes = {
@@ -143,6 +192,11 @@
 						CreatedOnToolsVersion = 8.2;
 						DevelopmentTeam = 3X57WP8E8V;
 						LastSwiftMigration = 1010;
+						ProvisioningStyle = Automatic;
+					};
+					E907FDD121EF059A0051E0E3 = {
+						CreatedOnToolsVersion = 10.1;
+						DevelopmentTeam = 3X57WP8E8V;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -161,6 +215,7 @@
 			projectRoot = "";
 			targets = (
 				E5AD448D1E05CD9200833E4A /* Mapper */,
+				E907FDD121EF059A0051E0E3 /* MapperMacOS */,
 			);
 		};
 /* End PBXProject section */
@@ -188,6 +243,14 @@
 				E597C6601E24D79000DE38B2 /* Decoder.m in Sources */,
 				E5AD44A81E05CDB600833E4A /* Model.m in Sources */,
 				E5AD44921E05CD9200833E4A /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E907FDCE21EF059A0051E0E3 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E907FDD521EF059A0051E0E3 /* main.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -243,6 +306,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -295,6 +359,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
@@ -340,6 +405,45 @@
 			};
 			name = Release;
 		};
+		E907FDD621EF059A0051E0E3 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_IDENTITY = "Mac Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 3X57WP8E8V;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SWIFT_VERSION = 4.2;
+			};
+			name = Debug;
+		};
+		E907FDD721EF059A0051E0E3 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_IDENTITY = "Mac Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 3X57WP8E8V;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				MTL_FAST_MATH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SWIFT_VERSION = 4.2;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -357,6 +461,15 @@
 			buildConfigurations = (
 				E5AD44A11E05CD9200833E4A /* Debug */,
 				E5AD44A21E05CD9200833E4A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		E907FDD821EF059A0051E0E3 /* Build configuration list for PBXNativeTarget "MapperMacOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E907FDD621EF059A0051E0E3 /* Debug */,
+				E907FDD721EF059A0051E0E3 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
