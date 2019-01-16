@@ -48,15 +48,15 @@ class HomeController: UIViewController {
     self.model.property("ObjectID", target: self, selector: #selector(HomeController.UpdateTextView), on: .onChange)
   }
   
-  func ChangeName() {
+  @objc func ChangeName() {
     self.model.name = self.nameField.text
   }
   
-  func ChangeID() {
+  @objc func ChangeID() {
     self.model.objectID = self.idField.text
   }
   
-  func UpdateTextView() {
+  @objc func UpdateTextView() {
     Dispatcher.delay(0) {
       self.textView.text = "model.toDictionary():\n \(self.model.toDictionary() as! [String: AnyObject])"
     }

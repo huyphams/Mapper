@@ -503,7 +503,7 @@ static void * const MapperContext = (void*)&MapperContext;
               parameters:[self getSourceParameters]
                  headers:[self getSourceHeader]
        completionHandler:^(id response, NSError *error) {
-           _fetching = NO;
+           weakSelf.fetching = NO;
            NSDictionary *data = [MapperUtils getDataFrom:response
                                              WithKeyPath:[weakSelf getSourceKeyPath]];
            
