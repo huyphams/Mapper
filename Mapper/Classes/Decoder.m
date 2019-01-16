@@ -208,14 +208,17 @@ static NSDictionary *_attributes = nil;
         if ([propertyType respondsToSelector:@selector(initData:)]) {
             return [instanceType initData:value];
         }
-        
         if ([instanceType respondsToSelector:@selector(initWithArray:)]) {
             return [self setValue:[instanceType initWithArray:value]
                            forKey:propertyName];
         }
-        
         if ([instanceType respondsToSelector:@selector(initWithDictionary:)]) {
             return [self setValue:[instanceType initWithDictionary:value]
+                           forKey:propertyName];
+        }
+        // Safe convert
+        if ([[NSString stringWithFormat:@"%@", [instanceType class]] isEqualToString:@"__NSCFNumber"]) {
+            return [self setValue:@([value floatValue])
                            forKey:propertyName];
         }
         return [self setValue:value
