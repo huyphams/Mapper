@@ -165,7 +165,7 @@ static NSDictionary *_attributes = nil;
     // Automic
     @synchronized (self) {
         @autoreleasepool {
-            for(Attribute *attribute in [self attributes]) {
+            for(Attribute *attribute in [[self attributes] copy]) {
                 id value = [dictionary objectForKey:attribute.nameWithoutUnderscore];
                 [self setProperty:attribute.name
                      propertyType:attribute.type
@@ -237,7 +237,7 @@ static NSDictionary *_attributes = nil;
 
 - (NSDictionary *)toDictionary {
     NSMutableDictionary *mutableDictionary = [NSMutableDictionary dictionary];
-    for (Attribute *attribute in [self attributes]) {
+    for (Attribute *attribute in [[self attributes] copy]) {
         id value = [self valueForKey:attribute.name];
         if ([[value class] isSubclassOfClass:[Decoder class]]) {
             [mutableDictionary setObject:[value toDictionary]
