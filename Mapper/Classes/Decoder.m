@@ -64,13 +64,15 @@ static NSDictionary *_attributes = nil;
 
 + (void)setAttributes:(NSArray<Attribute *> *)attributes forClass:(Class)class {
     NSString *classIdent = NSStringFromClass(class);
-    if (_attributes) {
-        NSMutableDictionary *dic = [NSMutableDictionary dictionaryWithObjectsAndKeys:attributes, classIdent, nil];
-        [dic addEntriesFromDictionary:_attributes];
-        _attributes = dic;
-        return;
+    @synchronized (_attributes) {
+        if (_attributes) {
+            NSMutableDictionary *dic = [NSMutableDictionary dictionaryWithObjectsAndKeys:attributes, classIdent, nil];
+            [dic addEntriesFromDictionary:_attributes];
+            _attributes = dic;
+            return;
+        }
+        _attributes = [NSDictionary dictionaryWithObjectsAndKeys:attributes, classIdent, nil];
     }
-    _attributes = [NSDictionary dictionaryWithObjectsAndKeys:attributes, classIdent, nil];
 }
 
 + (NSArray<Attribute *> *)getAttributeForClass:(Class)class {
