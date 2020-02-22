@@ -58,15 +58,15 @@ static NSDictionary *_attributes = nil;
 @implementation Decoder
 
 + (NSArray<Attribute *> *)attributesForClass:(Class)class {
-    @synchronized (_attributes) {
-        NSString *classIdent = NSStringFromClass(class);
+    NSString *classIdent = NSStringFromClass(class);
+    @synchronized (self) {
         return [_attributes valueForKey:classIdent];
     }
 }
 
 + (void)setAttributes:(NSArray<Attribute *> *)attributes forClass:(Class)class {
     NSString *classIdent = NSStringFromClass(class);
-    @synchronized (_attributes) {
+    @synchronized (self) {
         if (_attributes) {
             NSMutableDictionary *dic = [NSMutableDictionary dictionaryWithObjectsAndKeys:attributes, classIdent, nil];
             [dic addEntriesFromDictionary:_attributes];
@@ -92,12 +92,12 @@ static NSDictionary *_attributes = nil;
                 NSString *propertyType = [NSString stringWithCString:propertyTypeChar
                                                             encoding:NSUTF8StringEncoding];
                 NSString *propertyNameStrippedUnderscore = [self getPropertyNameStrippedUnderscore:propertyName];
-                
+
                 Attribute *attribute = [[Attribute alloc] init];
                 attribute.name = propertyName;
                 attribute.nameWithoutUnderscore = propertyNameStrippedUnderscore;
                 attribute.type = propertyType;
-                
+
                 [attributes addObject:attribute];
             }
         }
@@ -152,14 +152,14 @@ static NSDictionary *_attributes = nil;
         return existedAttributes;
     }
     NSMutableArray<Attribute *> *attributes = [NSMutableArray array];
-    
+
     Class superClass = class;
     while ([superClass superclass] != [Decoder class] && [superClass isSubclassOfClass:[Decoder class]]) {
         NSArray *attrs = [Decoder getAttributeForClass:superClass];
         [attributes addObjectsFromArray:attrs];
         superClass = [superClass superclass];
     }
-    
+
     [Decoder setAttributes:attributes
                   forClass:class];
     return attributes;
@@ -183,7 +183,7 @@ static NSDictionary *_attributes = nil;
        propertyType:(NSString *)propertyType
               value:(id)value {
     id instanceType = [self valueForKey:propertyName];
-    
+
     // Init instance
     if (!instanceType) {
         if ([NSClassFromString(propertyType) isSubclassOfClass:[Decoder class]]) {
@@ -193,7 +193,7 @@ static NSDictionary *_attributes = nil;
         }
         instanceType = [NSClassFromString(propertyType) alloc];
     }
-    
+
     // Alloc instance
     if ([instanceType isKindOfClass:[NSArray class]]) {
         instanceType = [NSArray alloc];
@@ -206,7 +206,7 @@ static NSDictionary *_attributes = nil;
     } else if ([instanceType isKindOfClass:[NSString class]]) {
         instanceType = [NSString alloc];
     }
-    
+
     // Check value
     if (value && value != [NSNull null]) {
         if ([propertyType respondsToSelector:@selector(initData:)]) {
@@ -228,7 +228,7 @@ static NSDictionary *_attributes = nil;
         return [self setValue:value
                        forKey:propertyName];
     }
-    
+
     // Call default function
     SEL selector = NSSelectorFromString([NSString stringWithFormat:@"_%@", propertyName]);
     if ([self respondsToSelector:selector]) {
@@ -257,7 +257,7 @@ static NSDictionary *_attributes = nil;
                                                key:attribute.name
                                               type: attribute.type]
                               forKey:attribute.name];
-        
+
     }
     return mutableDictionary;
 }
@@ -287,27 +287,27 @@ static NSDictionary *_attributes = nil;
         unsigned long long ulongValue = [value unsignedLongValue];
         return @(ulongValue);
     }
-    
+
     if ([type isEqualToString:@"B"]) {
         BOOL boolValue = [value boolValue];
         return @(boolValue);
     }
-    
+
     if ([type isEqualToString:@"C"]) {
         Boolean boolValue = [value boolValue];
         return @(boolValue);
     }
-    
+
     if ([type isEqualToString:@"d"]) {
         double floatValue = [value floatValue];
         return @(floatValue);
     }
-    
+
     if ([type isEqualToString:@"NSString"]) {
         return value;
     }
     // Add more value serializer here.
-    
+
     return value;
 }
 
