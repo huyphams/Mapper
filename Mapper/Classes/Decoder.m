@@ -58,8 +58,10 @@ static NSDictionary *_attributes = nil;
 @implementation Decoder
 
 + (NSArray<Attribute *> *)attributesForClass:(Class)class {
-    NSString *classIdent = NSStringFromClass(class);
-    return [_attributes valueForKey:classIdent];
+    @synchronized (_attributes) {
+        NSString *classIdent = NSStringFromClass(class);
+        return [_attributes valueForKey:classIdent];
+    }
 }
 
 + (void)setAttributes:(NSArray<Attribute *> *)attributes forClass:(Class)class {
