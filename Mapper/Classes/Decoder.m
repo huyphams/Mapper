@@ -183,7 +183,6 @@ static NSDictionary *_attributes = nil;
        propertyType:(NSString *)propertyType
               value:(id)value {
     id instanceType = [self valueForKey:propertyName];
-
     // Init instance
     if (!instanceType) {
         if ([NSClassFromString(propertyType) isSubclassOfClass:[Decoder class]]) {
@@ -213,10 +212,18 @@ static NSDictionary *_attributes = nil;
             return [instanceType initData:value];
         }
         if ([instanceType respondsToSelector:@selector(initWithArray:)]) {
+            if ([value isKindOfClass:[NSString class]]) {
+                return [self setValue:[instanceType init]
+                               forKey:propertyName];
+            }
             return [self setValue:[instanceType initWithArray:value]
                            forKey:propertyName];
         }
         if ([instanceType respondsToSelector:@selector(initWithDictionary:)]) {
+            if ([value isKindOfClass:[NSString class]]) {
+                return [self setValue:[instanceType init]
+                               forKey:propertyName];
+            }
             return [self setValue:[instanceType initWithDictionary:value]
                            forKey:propertyName];
         }
