@@ -212,20 +212,22 @@ static NSDictionary *_attributes = nil;
             return [instanceType initData:value];
         }
         if ([instanceType respondsToSelector:@selector(initWithArray:)]) {
-            if ([value isKindOfClass:[NSString class]]) {
+            if ([value isKindOfClass:[NSArray class]]) {
+                return [self setValue:[instanceType initWithArray:value]
+                               forKey:propertyName];
+            } else {
                 return [self setValue:[instanceType init]
                                forKey:propertyName];
             }
-            return [self setValue:[instanceType initWithArray:value]
-                           forKey:propertyName];
         }
         if ([instanceType respondsToSelector:@selector(initWithDictionary:)]) {
-            if ([value isKindOfClass:[NSString class]]) {
+            if ([value isKindOfClass:[NSDictionary class]]) {
+                return [self setValue:[instanceType initWithDictionary:value]
+                               forKey:propertyName];
+            } else {
                 return [self setValue:[instanceType init]
                                forKey:propertyName];
             }
-            return [self setValue:[instanceType initWithDictionary:value]
-                           forKey:propertyName];
         }
         // Safe convert
         if ([[NSString stringWithFormat:@"%@", [instanceType class]] isEqualToString:@"__NSCFNumber"]) {
