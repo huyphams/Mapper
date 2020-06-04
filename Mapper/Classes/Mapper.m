@@ -99,14 +99,12 @@ static void * const MapperContext = (void*)&MapperContext;
 
 // Check keys path existed
 - (BOOL)keyPathExisted:(NSString *)keyPath {
-    @synchronized (_keyPaths) {
-        for (NSString *key in _keyPaths) {
-            if ([key isEqualToString:keyPath]) {
-                return YES;
-            }
+    for (NSString *key in [_keyPaths copy]) {
+        if ([key isEqualToString:keyPath]) {
+            return YES;
         }
-        return NO;
     }
+    return NO;
 }
 
 - (void)addKeyPath:(NSString *)keyPath {
@@ -114,43 +112,37 @@ static void * const MapperContext = (void*)&MapperContext;
 }
 
 - (void)removeKeyPath:(NSString *)keyPath {
-    @synchronized (_keyPaths) {
-        NSMutableArray *keysToDelete = [NSMutableArray array];
-        for (NSString *key in _keyPaths) {
-            if ([key isEqualToString:keyPath]) {
-                [keysToDelete addObject:key];
-            }
+    NSMutableArray *keysToDelete = [NSMutableArray array];
+    for (NSString *key in [_keyPaths copy]) {
+        if ([key isEqualToString:keyPath]) {
+            [keysToDelete addObject:key];
         }
-        [_keyPaths removeObjectsInArray:keysToDelete];
     }
+    [_keyPaths removeObjectsInArray:keysToDelete];
 }
 
 // Get reaction of property on event.
 - (NSArray *)getReactionsOfProperty:(NSString *)property
                             onEvent:(MapperEvent)event {
     NSMutableArray *reactions = [NSMutableArray array];
-    @synchronized (_reactions) {
-        for (MapperReaction *reaction in _reactions) {
-            if ([reaction.keyPath isEqualToString:property]
-                && reaction.event == event) {
-                [reactions addObject:reaction];
-            }
+    for (MapperReaction *reaction in [_reactions copy]) {
+        if ([reaction.keyPath isEqualToString:property]
+            && reaction.event == event) {
+            [reactions addObject:reaction];
         }
-        return reactions;
     }
+    return reactions;
 }
 
 // Get reactions of property.
 - (NSArray *)getReactionsOfProperty:(NSString *)property {
     NSMutableArray *reactions = [NSMutableArray array];
-    @synchronized (_reactions) {
-        for (MapperReaction *reaction in _reactions) {
-            if ([reaction.keyPath isEqualToString:property]) {
-                [reactions addObject:reaction];
-            }
+    for (MapperReaction *reaction in [_reactions copy]) {
+        if ([reaction.keyPath isEqualToString:property]) {
+            [reactions addObject:reaction];
         }
-        return reactions;
     }
+    return reactions;
 }
 
 - (NSArray *)getActionsOfProperty:(NSString *)property
@@ -158,44 +150,38 @@ static void * const MapperContext = (void*)&MapperContext;
                          selector:(SEL)selector
                           onEvent:(MapperEvent)event {
     NSMutableArray *actions = [NSMutableArray array];
-    @synchronized (_actions) {
-        for (MapperAction *action in _actions) {
-            if ([action.keyPath isEqualToString:property]
-                && [action.target isEqual:target]
-                && action.selector == selector
-                && action.event == event) {
-                [actions addObject:action];
-            }
+    for (MapperAction *action in [_actions copy]) {
+        if ([action.keyPath isEqualToString:property]
+            && [action.target isEqual:target]
+            && action.selector == selector
+            && action.event == event) {
+            [actions addObject:action];
         }
-        return actions;
     }
+    return actions;
 }
 
 - (NSArray *)getActionsOfProperty:(NSString *)property
                            target:(id)target
                          selector:(SEL)selector {
     NSMutableArray *actions = [NSMutableArray array];
-    @synchronized (_actions) {
-        for (MapperAction *action in _actions) {
-            if ([action.keyPath isEqualToString:property]
-                && [action.target isEqual:target]
-                && action.selector == selector) {
-                [actions addObject:action];
-            }
+    for (MapperAction *action in [_actions copy]) {
+        if ([action.keyPath isEqualToString:property]
+            && [action.target isEqual:target]
+            && action.selector == selector) {
+            [actions addObject:action];
         }
-        return actions;
     }
+    return actions;
 }
 
 - (NSArray *)getActionsOfProperty:(NSString *)property
                            target:(id)target {
     NSMutableArray *actions = [NSMutableArray array];
-    @synchronized (_actions) {
-        for (MapperAction *action in _actions) {
-            if ([action.keyPath isEqualToString:property]
-                && [action.target isEqual:target]) {
-                [actions addObject:action];
-            }
+    for (MapperAction *action in [_actions copy]) {
+        if ([action.keyPath isEqualToString:property]
+            && [action.target isEqual:target]) {
+            [actions addObject:action];
         }
         return actions;
     }
@@ -204,28 +190,24 @@ static void * const MapperContext = (void*)&MapperContext;
 - (NSArray *)getActionsOfProperty:(NSString *)property
                           onEvent:(MapperEvent)event {
     NSMutableArray *actions = [NSMutableArray array];
-    @synchronized (_actions) {
-        for (MapperAction *action in _actions) {
-            if ([action.keyPath isEqualToString:property]
-                && action.event == event) {
-                [actions addObject:action];
-            }
+    for (MapperAction *action in [_actions copy]) {
+        if ([action.keyPath isEqualToString:property]
+            && action.event == event) {
+            [actions addObject:action];
         }
-        return actions;
     }
+    return actions;
 }
 
 // Get action of property.
 - (NSArray *)getActionsOfProperty:(NSString *)property {
     NSMutableArray *actions = [NSMutableArray array];
-    @synchronized (_actions) {
-        for (MapperAction *action in _actions) {
-            if ([action.keyPath isEqualToString:property]) {
-                [actions addObject:action];
-            }
+    for (MapperAction *action in [_actions copy]) {
+        if ([action.keyPath isEqualToString:property]) {
+            [actions addObject:action];
         }
-        return actions;
     }
+    return actions;
 }
 
 - (void)registerObserverForKeyPath:(NSString *)keyPath {
@@ -503,18 +485,18 @@ static void * const MapperContext = (void*)&MapperContext;
               parameters:[self getSourceParameters]
                  headers:[self getSourceHeader]
        completionHandler:^(id response, NSError *error) {
-           [weakSelf setFetching:NO];
-           NSDictionary *data = [MapperUtils getDataFrom:response
-                                             WithKeyPath:[weakSelf getSourceKeyPath]];
-           
-           
-           if (data) {
-               [weakSelf initData:data];
-           }
-           if (completion) {
-               completion(data, error);
-           }
-       }];
+        [weakSelf setFetching:NO];
+        NSDictionary *data = [MapperUtils getDataFrom:response
+                                          WithKeyPath:[weakSelf getSourceKeyPath]];
+
+
+        if (data) {
+            [weakSelf initData:data];
+        }
+        if (completion) {
+            completion(data, error);
+        }
+    }];
 }
 
 - (NSString *)getSourceKeyPath {
