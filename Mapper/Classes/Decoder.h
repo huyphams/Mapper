@@ -10,7 +10,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface Decoder : NSObject
+@interface HPDecoder : NSObject
 /**
  *  Auto Mapper properties object with dictionary/json.
  *

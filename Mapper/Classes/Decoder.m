@@ -47,7 +47,7 @@ static const char *getPropertyType(objc_property_t property) {
 
 @end
 
-@interface Decoder()
+@interface HPDecoder()
 
 @property (nonatomic, getter=isInitiated) BOOL initiated;
 
@@ -55,7 +55,7 @@ static const char *getPropertyType(objc_property_t property) {
 
 static NSDictionary *_attributes = nil;
 
-@implementation Decoder
+@implementation HPDecoder
 
 + (NSArray<Attribute *> *)attributesForClass:(Class)class {
     NSString *classIdent = NSStringFromClass(class);
@@ -147,20 +147,20 @@ static NSDictionary *_attributes = nil;
 
 - (NSArray<Attribute *> *)attributes {
     Class class = [self class];
-    NSArray<Attribute *> *existedAttributes = [Decoder attributesForClass:class];
+    NSArray<Attribute *> *existedAttributes = [HPDecoder attributesForClass:class];
     if (existedAttributes) {
         return existedAttributes;
     }
     NSMutableArray<Attribute *> *attributes = [NSMutableArray array];
 
     Class superClass = class;
-    while ([superClass superclass] != [Decoder class] && [superClass isSubclassOfClass:[Decoder class]]) {
-        NSArray *attrs = [Decoder getAttributeForClass:superClass];
+    while ([superClass superclass] != [HPDecoder class] && [superClass isSubclassOfClass:[HPDecoder class]]) {
+        NSArray *attrs = [HPDecoder getAttributeForClass:superClass];
         [attributes addObjectsFromArray:attrs];
         superClass = [superClass superclass];
     }
 
-    [Decoder setAttributes:attributes
+    [HPDecoder setAttributes:attributes
                   forClass:class];
     return attributes;
 }
@@ -185,7 +185,7 @@ static NSDictionary *_attributes = nil;
     id instanceType = [self valueForKey:propertyName];
     // Init instance
     if (!instanceType) {
-        if ([NSClassFromString(propertyType) isSubclassOfClass:[Decoder class]]) {
+        if ([NSClassFromString(propertyType) isSubclassOfClass:[HPDecoder class]]) {
             instanceType = [[NSClassFromString(propertyType) alloc] initWithDictionary:value];
             return [self setValue:instanceType
                            forKey:propertyName];
@@ -252,7 +252,7 @@ static NSDictionary *_attributes = nil;
     NSMutableDictionary *mutableDictionary = [NSMutableDictionary dictionary];
     for (Attribute *attribute in [[self attributes] copy]) {
         id value = [self valueForKey:attribute.name];
-        if ([[value class] isSubclassOfClass:[Decoder class]]) {
+        if ([[value class] isSubclassOfClass:[HPDecoder class]]) {
             [mutableDictionary setObject:[value toDictionary]
                                   forKey:attribute.name];
             continue;
@@ -274,7 +274,7 @@ static NSDictionary *_attributes = nil;
 - (NSArray *)toArray:(NSArray *)array {
     NSMutableArray *mutableArray = [NSMutableArray array];
     for (id value in array) {
-        if ([[value class] isSubclassOfClass:[Decoder class]]) {
+        if ([[value class] isSubclassOfClass:[HPDecoder class]]) {
             [mutableArray addObject:[value toDictionary]];
             continue;
         }
