@@ -28,7 +28,7 @@ typedef NS_ENUM(NSInteger, MapperEvent){
     MapperEventOnChange = 0x03
 };
 
-@interface Mapper : Decoder
+@interface Mapper : HPDecoder
 /**
  *  Register reaction for property on an event.
  *
